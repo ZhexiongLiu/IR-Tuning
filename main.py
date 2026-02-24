@@ -242,8 +242,8 @@ if __name__ == '__main__':
     parser.add_argument('--lora-dropout', type=float, default=0.05, help='lora dropout')
 
     parser.add_argument('--warmup-steps', type=int, default=100, help='warmup steps for learning rate')
-    parser.add_argument('--batch-size', type=int, default=8, help='batch size')
-    parser.add_argument('--per-device-train-batch-size', type=int, default=8, help='device batch size')
+    parser.add_argument('--batch-size', type=int, default=16, help='batch size')
+    parser.add_argument('--per-device-train-batch-size', type=int, default=16, help='device batch size')
     parser.add_argument('--gradient-accumulation-steps', type=int, default=1, help='gradient accumulation steps')
 
     parser.add_argument('--num-train-epochs', type=int, default=4, help='number of epochs')
@@ -283,9 +283,6 @@ if __name__ == '__main__':
         args.max_length = 256
         args.per_device_train_batch_size = 16
 
-    args.gradient_accumulation_steps = args.batch_size // args.per_device_train_batch_size
-    os.makedirs(args.output_dir, exist_ok=True)
-
     if args.model_name == 'llama3.1-8b' and args.use_instruction:
         args.base_model = 'meta-llama/Llama-3.1-8B-Instruct'
     elif args.model_name == 'llama3.1-8b' and not args.use_instruction:
@@ -308,6 +305,9 @@ if __name__ == '__main__':
         args.base_model = 'microsoft/phi-2'
     else:
         raise ValueError('Unknown model name')
+
+    args.gradient_accumulation_steps = args.batch_size // args.per_device_train_batch_size
+    os.makedirs(args.output_dir, exist_ok=True)
 
     with open(os.path.join(args.output_dir, "parameter.json"), "w") as f:
         json.dump(vars(args), f, indent=4)
