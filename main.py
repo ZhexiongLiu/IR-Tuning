@@ -280,8 +280,6 @@ if __name__ == '__main__':
     if args.use_instruction:
         os.environ["WANDB_NAME"] += '-instruction'
         args.output_dir += '-instruction'
-        args.max_length = 256
-        args.per_device_train_batch_size = 16
 
     if args.model_name == 'llama3.1-8b' and args.use_instruction:
         args.base_model = 'meta-llama/Llama-3.1-8B-Instruct'

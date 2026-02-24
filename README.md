@@ -13,6 +13,8 @@ python main.py \
   --adapter-name lora \
   --importance-metric-name gradient \
   --tuning-method ir \
+  --batch-size 8 \
+  --per-device-train-batch-size 8 \
   --use-instruction
 ```
 
