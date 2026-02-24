@@ -228,7 +228,7 @@ if __name__ == '__main__':
     parser.add_argument('--adapter-name', default='lora', choices=['lora', 'dora', 'bottleneck'], help='model adapter name')
     parser.add_argument('--importance-metric-name', default='gradient', choices=['gradient', 'weight', 'cosine'], help='importance score metric name')
     parser.add_argument('--tuning-method', default='ir', choices=['ir', 'rst', 'ist', 'full'], help='layer-wise tuning method')
-    parser.add_argument('--output-dir', default='experiments/debug', help='experiment directory')
+    parser.add_argument('--output-dir', default='debug', help='experiment directory')
     parser.add_argument('--use-instruction', default=False, action='store_true', help='whether to use instruction')
     parser.add_argument('--load-8bit', default=False, action='store_true', help='whether to load 8bit model')
 

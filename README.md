@@ -13,7 +13,6 @@ python main.py \
   --adapter-name lora \
   --importance-metric-name gradient \
   --tuning-method ir \
-  --output-dir experiments/debug \
   --use-instruction
 ```
 
